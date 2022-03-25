@@ -29,7 +29,11 @@ public class FormCajero extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        label_titulo = new javax.swing.JLabel();
+        label_usuario1 = new javax.swing.JLabel();
+        login_usuario = new javax.swing.JTextField();
+        label_contrasena1 = new javax.swing.JLabel();
+        login_contrasena = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -54,13 +58,30 @@ public class FormCajero extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextField1.setText("jTextField1");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        label_titulo.setFont(new java.awt.Font("Consolas", 0, 24)); // NOI18N
+        label_titulo.setForeground(new java.awt.Color(255, 255, 255));
+        label_titulo.setText("Bienvenido");
+        jPanel1.add(label_titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, -1, -1));
+
+        label_usuario1.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        label_usuario1.setForeground(new java.awt.Color(255, 255, 255));
+        label_usuario1.setText("identificación");
+        jPanel1.add(label_usuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, -1, -1));
+
+        login_usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                login_usuarioActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, -1, -1));
+        jPanel1.add(login_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 170, 30));
+
+        label_contrasena1.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        label_contrasena1.setForeground(new java.awt.Color(255, 255, 255));
+        label_contrasena1.setText("contraseña");
+        jPanel1.add(label_contrasena1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, -1, -1));
+
+        login_contrasena.setText("jPasswordField1");
+        jPanel1.add(login_contrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, 170, 30));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/boton1blanco.png"))); // NOI18N
         jButton1.setActionCommand("");
@@ -530,9 +551,9 @@ public class FormCajero extends javax.swing.JFrame {
         jButton15.setIcon(new ImageIcon(getClass().getResource("/img/retirar.png")));
     }//GEN-LAST:event_jButton15MouseExited
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void login_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_usuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_login_usuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -587,6 +608,10 @@ public class FormCajero extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel label_contrasena1;
+    private javax.swing.JLabel label_titulo;
+    private javax.swing.JLabel label_usuario1;
+    private javax.swing.JPasswordField login_contrasena;
+    private javax.swing.JTextField login_usuario;
     // End of variables declaration//GEN-END:variables
 }
