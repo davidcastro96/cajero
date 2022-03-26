@@ -16,7 +16,7 @@ import modelo.Usuarios;
  *
  * @author DAVIDCASTRO
  */
-public class FormCajero extends javax.swing.JFrame{
+public class FormCajero extends javax.swing.JFrame {
 
     /**
      * Creates new form FormCajero
@@ -423,40 +423,40 @@ public class FormCajero extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.login_usuario.setText(this.login_usuario.getText()+"2");
+        this.login_usuario.setText(this.login_usuario.getText() + "2");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        this.login_usuario.setText(this.login_usuario.getText()+"3");
+        this.login_usuario.setText(this.login_usuario.getText() + "3");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        this.login_usuario.setText(this.login_usuario.getText()+"4");
+        this.login_usuario.setText(this.login_usuario.getText() + "4");
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        this.login_usuario.setText(this.login_usuario.getText()+"5");
+        this.login_usuario.setText(this.login_usuario.getText() + "5");
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        this.login_usuario.setText(this.login_usuario.getText()+"6");
+        this.login_usuario.setText(this.login_usuario.getText() + "6");
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        this.login_usuario.setText(this.login_usuario.getText()+"7");
+        this.login_usuario.setText(this.login_usuario.getText() + "7");
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        this.login_usuario.setText(this.login_usuario.getText()+"8");
+        this.login_usuario.setText(this.login_usuario.getText() + "8");
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        this.login_usuario.setText(this.login_usuario.getText()+"9");
+        this.login_usuario.setText(this.login_usuario.getText() + "9");
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        if(this.login_usuario.getText().length()!=0){
-            this.login_usuario.setText(this.login_usuario.getText().substring(0, this.login_usuario.getText().length()-1));
+        if (this.login_usuario.getText().length() != 0) {
+            this.login_usuario.setText(this.login_usuario.getText().substring(0, this.login_usuario.getText().length() - 1));
         }
     }//GEN-LAST:event_jButton10ActionPerformed
 
@@ -470,34 +470,30 @@ public class FormCajero extends javax.swing.JFrame{
         String contrasena = String.copyValueOf(login_contrasena.getPassword());
         try {
             Usuarios u = Main.tablaUsuarios.queryForId(usuario);
-            if (u == null){
+            if (u == null) {
                 msm_valida_acceso_identificacion.setVisible(true);
                 msm_valida_acceso.setVisible(false);
                 msm_valida_acceso_identificacion.setForeground(Color.red);
                 msm_valida_acceso_identificacion.setText("No existe el usuario");
-            }else{
-                if (contrasena.equals(u.getClave())){
+            } else {
+                if (contrasena.equals(u.getClave())) {
                     msm_valida_acceso.setVisible(true);
                     msm_valida_acceso_identificacion.setVisible(false);
                     msm_valida_acceso.setForeground(Color.green);
                     msm_valida_acceso.setText("Acceso autorizado");
-                    Thread.sleep(2000);
+                    this.setVisible(false);
                     FormCajero2 forma2 = new FormCajero2();
                     forma2.setVisible(true);
-                    
-                }else{
+                } else {
                     msm_valida_acceso.setVisible(true);
                     msm_valida_acceso_identificacion.setVisible(false);
                     msm_valida_acceso.setForeground(Color.red);
                     msm_valida_acceso.setText("Acceso no autorizado, clave incorrecta");
-                    
                 }
             }
         } catch (SQLException ex) {
             Logger.getLogger(FormCajero.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println(ex.getMessage());
-        } catch (InterruptedException ex) {
-            Logger.getLogger(FormCajero.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton12ActionPerformed
 
@@ -630,7 +626,7 @@ public class FormCajero extends javax.swing.JFrame{
     }//GEN-LAST:event_login_contrasenaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.login_usuario.setText(this.login_usuario.getText()+"1");
+        this.login_usuario.setText(this.login_usuario.getText() + "1");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
