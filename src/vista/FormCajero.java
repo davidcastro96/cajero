@@ -114,10 +114,10 @@ public class FormCajero extends javax.swing.JFrame {
         jPanel1.add(msm_valida_acceso_identificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 264, 260, 30));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/boton1blanco.png"))); // NOI18N
-        jButton1.setActionCommand("");
         jButton1.setBorder(null);
         jButton1.setContentAreaFilled(false);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton1.setFocusable(false);
         jButton1.setName(""); // NOI18N
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -138,6 +138,7 @@ public class FormCajero extends javax.swing.JFrame {
         jButton2.setBorder(null);
         jButton2.setContentAreaFilled(false);
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton2.setFocusable(false);
         jButton2.setName(""); // NOI18N
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -158,6 +159,7 @@ public class FormCajero extends javax.swing.JFrame {
         jButton3.setBorder(null);
         jButton3.setContentAreaFilled(false);
         jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton3.setFocusable(false);
         jButton3.setName(""); // NOI18N
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -178,6 +180,7 @@ public class FormCajero extends javax.swing.JFrame {
         jButton4.setBorder(null);
         jButton4.setContentAreaFilled(false);
         jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton4.setFocusable(false);
         jButton4.setName(""); // NOI18N
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -198,6 +201,7 @@ public class FormCajero extends javax.swing.JFrame {
         jButton5.setBorder(null);
         jButton5.setContentAreaFilled(false);
         jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton5.setFocusable(false);
         jButton5.setName(""); // NOI18N
         jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -218,6 +222,7 @@ public class FormCajero extends javax.swing.JFrame {
         jButton6.setBorder(null);
         jButton6.setContentAreaFilled(false);
         jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton6.setFocusable(false);
         jButton6.setName(""); // NOI18N
         jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -238,6 +243,7 @@ public class FormCajero extends javax.swing.JFrame {
         jButton7.setBorder(null);
         jButton7.setContentAreaFilled(false);
         jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton7.setFocusable(false);
         jButton7.setName(""); // NOI18N
         jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -258,6 +264,7 @@ public class FormCajero extends javax.swing.JFrame {
         jButton8.setBorder(null);
         jButton8.setContentAreaFilled(false);
         jButton8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton8.setFocusable(false);
         jButton8.setName(""); // NOI18N
         jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -278,6 +285,7 @@ public class FormCajero extends javax.swing.JFrame {
         jButton9.setBorder(null);
         jButton9.setContentAreaFilled(false);
         jButton9.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton9.setFocusable(false);
         jButton9.setName(""); // NOI18N
         jButton9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -298,6 +306,7 @@ public class FormCajero extends javax.swing.JFrame {
         jButton10.setBorder(null);
         jButton10.setContentAreaFilled(false);
         jButton10.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton10.setFocusable(false);
         jButton10.setName(""); // NOI18N
         jButton10.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -318,6 +327,7 @@ public class FormCajero extends javax.swing.JFrame {
         jButton11.setBorder(null);
         jButton11.setContentAreaFilled(false);
         jButton11.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton11.setFocusable(false);
         jButton11.setName(""); // NOI18N
         jButton11.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -338,6 +348,7 @@ public class FormCajero extends javax.swing.JFrame {
         jButton12.setBorder(null);
         jButton12.setContentAreaFilled(false);
         jButton12.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton12.setFocusable(false);
         jButton12.setName(""); // NOI18N
         jButton12.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -358,6 +369,7 @@ public class FormCajero extends javax.swing.JFrame {
         jButton13.setBorder(null);
         jButton13.setContentAreaFilled(false);
         jButton13.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton13.setFocusable(false);
         jButton13.setName(""); // NOI18N
         jButton13.setPreferredSize(new java.awt.Dimension(45, 5));
         jButton13.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -374,6 +386,7 @@ public class FormCajero extends javax.swing.JFrame {
         jButton14.setBorder(null);
         jButton14.setContentAreaFilled(false);
         jButton14.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton14.setFocusable(false);
         jButton14.setName(""); // NOI18N
         jButton14.setPreferredSize(new java.awt.Dimension(45, 5));
         jButton14.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -390,6 +403,7 @@ public class FormCajero extends javax.swing.JFrame {
         jButton15.setBorder(null);
         jButton15.setContentAreaFilled(false);
         jButton15.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton15.setFocusable(false);
         jButton15.setName(""); // NOI18N
         jButton15.setPreferredSize(new java.awt.Dimension(45, 5));
         jButton15.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -404,6 +418,7 @@ public class FormCajero extends javax.swing.JFrame {
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/background400.png"))); // NOI18N
+        jLabel1.setFocusable(false);
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
