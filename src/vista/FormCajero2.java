@@ -10,12 +10,12 @@ import javax.swing.ImageIcon;
  *
  * @author DAVIDCASTRO
  */
-public class FormCajero extends javax.swing.JFrame {
+public class FormCajero2 extends javax.swing.JFrame {
 
     /**
      * Creates new form FormCajero
      */
-    public FormCajero() {
+    public FormCajero2() {
         initComponents();
     }
 
@@ -29,11 +29,17 @@ public class FormCajero extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        label_titulo = new javax.swing.JLabel();
-        label_usuario1 = new javax.swing.JLabel();
-        login_usuario = new javax.swing.JTextField();
-        label_contrasena1 = new javax.swing.JLabel();
-        login_contrasena = new javax.swing.JPasswordField();
+        variable_saldo = new javax.swing.JLabel();
+        variable_nombre = new javax.swing.JLabel();
+        title_nombre = new javax.swing.JLabel();
+        title_saldo = new javax.swing.JLabel();
+        jButtonDepositarScreen = new javax.swing.JButton();
+        jButtonTransferirScreen = new javax.swing.JButton();
+        jButtonRetirarScreen = new javax.swing.JButton();
+        title_transferir = new javax.swing.JLabel();
+        title_depositar = new javax.swing.JLabel();
+        title_retirar = new javax.swing.JLabel();
+        variableHoraScreen2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -58,33 +64,76 @@ public class FormCajero extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        label_titulo.setFont(new java.awt.Font("Consolas", 0, 24)); // NOI18N
-        label_titulo.setForeground(new java.awt.Color(255, 255, 255));
-        label_titulo.setText("Bienvenido");
-        jPanel1.add(label_titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, -1, -1));
+        variable_saldo.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
+        variable_saldo.setForeground(new java.awt.Color(255, 255, 255));
+        variable_saldo.setText("$");
+        jPanel1.add(variable_saldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, -1, -1));
 
-        label_usuario1.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        label_usuario1.setForeground(new java.awt.Color(255, 255, 255));
-        label_usuario1.setText("identificación");
-        jPanel1.add(label_usuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, -1, -1));
+        variable_nombre.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
+        variable_nombre.setForeground(new java.awt.Color(255, 255, 255));
+        variable_nombre.setText("nombre");
+        jPanel1.add(variable_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, -1, -1));
 
-        login_usuario.addActionListener(new java.awt.event.ActionListener() {
+        title_nombre.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
+        title_nombre.setForeground(new java.awt.Color(255, 255, 255));
+        title_nombre.setText("Nombre");
+        jPanel1.add(title_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, -1, -1));
+
+        title_saldo.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
+        title_saldo.setForeground(new java.awt.Color(255, 255, 255));
+        title_saldo.setText("Saldo actual");
+        jPanel1.add(title_saldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
+
+        jButtonDepositarScreen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/depositar.png"))); // NOI18N
+        jButtonDepositarScreen.setBorder(null);
+        jButtonDepositarScreen.setContentAreaFilled(false);
+        jButtonDepositarScreen.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButtonDepositarScreen.setName(""); // NOI18N
+        jButtonDepositarScreen.setPreferredSize(new java.awt.Dimension(45, 5));
+        jButtonDepositarScreen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                login_usuarioActionPerformed(evt);
+                jButtonDepositarScreenActionPerformed(evt);
             }
         });
-        jPanel1.add(login_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 170, 30));
+        jPanel1.add(jButtonDepositarScreen, new org.netbeans.lib.awtextra.AbsoluteConstraints(175, 230, 50, 70));
 
-        label_contrasena1.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        label_contrasena1.setForeground(new java.awt.Color(255, 255, 255));
-        label_contrasena1.setText("contraseña");
-        jPanel1.add(label_contrasena1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, -1, -1));
+        jButtonTransferirScreen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/transferir.png"))); // NOI18N
+        jButtonTransferirScreen.setBorder(null);
+        jButtonTransferirScreen.setContentAreaFilled(false);
+        jButtonTransferirScreen.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButtonTransferirScreen.setName(""); // NOI18N
+        jButtonTransferirScreen.setPreferredSize(new java.awt.Dimension(45, 5));
+        jPanel1.add(jButtonTransferirScreen, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 50, 70));
 
-        login_contrasena.setText("jPasswordField1");
-        jPanel1.add(login_contrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, 170, 30));
+        jButtonRetirarScreen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/retirar.png"))); // NOI18N
+        jButtonRetirarScreen.setBorder(null);
+        jButtonRetirarScreen.setContentAreaFilled(false);
+        jButtonRetirarScreen.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButtonRetirarScreen.setName(""); // NOI18N
+        jButtonRetirarScreen.setPreferredSize(new java.awt.Dimension(45, 5));
+        jPanel1.add(jButtonRetirarScreen, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 50, 70));
+
+        title_transferir.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        title_transferir.setForeground(new java.awt.Color(255, 255, 255));
+        title_transferir.setText("transferir");
+        jPanel1.add(title_transferir, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 215, -1, -1));
+
+        title_depositar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        title_depositar.setForeground(new java.awt.Color(255, 255, 255));
+        title_depositar.setText("depositar");
+        jPanel1.add(title_depositar, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 215, -1, -1));
+
+        title_retirar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        title_retirar.setForeground(new java.awt.Color(255, 255, 255));
+        title_retirar.setText("retirar");
+        jPanel1.add(title_retirar, new org.netbeans.lib.awtextra.AbsoluteConstraints(266, 215, -1, -1));
+
+        variableHoraScreen2.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        variableHoraScreen2.setForeground(new java.awt.Color(255, 255, 255));
+        variableHoraScreen2.setText("hora");
+        jPanel1.add(variableHoraScreen2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, -1, -1));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/boton1blanco.png"))); // NOI18N
-        jButton1.setActionCommand("");
         jButton1.setBorder(null);
         jButton1.setContentAreaFilled(false);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -551,9 +600,9 @@ public class FormCajero extends javax.swing.JFrame {
         jButton15.setIcon(new ImageIcon(getClass().getResource("/img/retirar.png")));
     }//GEN-LAST:event_jButton15MouseExited
 
-    private void login_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_usuarioActionPerformed
+    private void jButtonDepositarScreenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDepositarScreenActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_login_usuarioActionPerformed
+    }//GEN-LAST:event_jButtonDepositarScreenActionPerformed
 
     /**
      * @param args the command line arguments
@@ -606,12 +655,18 @@ public class FormCajero extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
+    private javax.swing.JButton jButtonDepositarScreen;
+    private javax.swing.JButton jButtonRetirarScreen;
+    private javax.swing.JButton jButtonTransferirScreen;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel label_contrasena1;
-    private javax.swing.JLabel label_titulo;
-    private javax.swing.JLabel label_usuario1;
-    private javax.swing.JPasswordField login_contrasena;
-    private javax.swing.JTextField login_usuario;
+    private javax.swing.JLabel title_depositar;
+    private javax.swing.JLabel title_nombre;
+    private javax.swing.JLabel title_retirar;
+    private javax.swing.JLabel title_saldo;
+    private javax.swing.JLabel title_transferir;
+    private javax.swing.JLabel variableHoraScreen2;
+    private javax.swing.JLabel variable_nombre;
+    private javax.swing.JLabel variable_saldo;
     // End of variables declaration//GEN-END:variables
 }

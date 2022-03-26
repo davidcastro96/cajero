@@ -4,13 +4,19 @@
  */
 package vista;
 
+import java.awt.Color;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import modelo.Main;
+import modelo.Usuarios;
 
 /**
  *
  * @author DAVIDCASTRO
  */
-public class FormCajero extends javax.swing.JFrame {
+public class FormCajero extends javax.swing.JFrame{
 
     /**
      * Creates new form FormCajero
@@ -30,10 +36,13 @@ public class FormCajero extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         label_titulo = new javax.swing.JLabel();
+        detail_cajero = new javax.swing.JLabel();
         label_usuario1 = new javax.swing.JLabel();
         login_usuario = new javax.swing.JTextField();
         label_contrasena1 = new javax.swing.JLabel();
         login_contrasena = new javax.swing.JPasswordField();
+        msm_valida_acceso = new javax.swing.JLabel();
+        msm_valida_acceso_identificacion = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -61,27 +70,48 @@ public class FormCajero extends javax.swing.JFrame {
         label_titulo.setFont(new java.awt.Font("Consolas", 0, 24)); // NOI18N
         label_titulo.setForeground(new java.awt.Color(255, 255, 255));
         label_titulo.setText("Bienvenido");
-        jPanel1.add(label_titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, -1, -1));
+        jPanel1.add(label_titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, -1, -1));
+
+        detail_cajero.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        detail_cajero.setForeground(new java.awt.Color(255, 255, 255));
+        detail_cajero.setText("cajero automático");
+        jPanel1.add(detail_cajero, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, -1, -1));
 
         label_usuario1.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         label_usuario1.setForeground(new java.awt.Color(255, 255, 255));
         label_usuario1.setText("identificación");
-        jPanel1.add(label_usuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, -1, -1));
+        jPanel1.add(label_usuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, -1, -1));
 
+        login_usuario.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
+        login_usuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         login_usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 login_usuarioActionPerformed(evt);
             }
         });
-        jPanel1.add(login_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 170, 30));
+        jPanel1.add(login_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 170, 30));
 
         label_contrasena1.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         label_contrasena1.setForeground(new java.awt.Color(255, 255, 255));
         label_contrasena1.setText("contraseña");
-        jPanel1.add(label_contrasena1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, -1, -1));
+        jPanel1.add(label_contrasena1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, -1, -1));
 
-        login_contrasena.setText("jPasswordField1");
-        jPanel1.add(login_contrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, 170, 30));
+        login_contrasena.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
+        login_contrasena.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        login_contrasena.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                login_contrasenaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(login_contrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 170, 30));
+
+        msm_valida_acceso.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
+        msm_valida_acceso.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(msm_valida_acceso, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 264, 260, 30));
+
+        msm_valida_acceso_identificacion.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
+        msm_valida_acceso_identificacion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(msm_valida_acceso_identificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 264, 260, 30));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/boton1blanco.png"))); // NOI18N
         jButton1.setActionCommand("");
@@ -95,6 +125,11 @@ public class FormCajero extends javax.swing.JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jButton1MouseExited(evt);
+            }
+        });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(151, 368, 60, 50));
@@ -388,39 +423,41 @@ public class FormCajero extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        this.login_usuario.setText(this.login_usuario.getText()+"2");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        this.login_usuario.setText(this.login_usuario.getText()+"3");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        this.login_usuario.setText(this.login_usuario.getText()+"4");
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        this.login_usuario.setText(this.login_usuario.getText()+"5");
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
+        this.login_usuario.setText(this.login_usuario.getText()+"6");
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+        this.login_usuario.setText(this.login_usuario.getText()+"7");
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
+        this.login_usuario.setText(this.login_usuario.getText()+"8");
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
+        this.login_usuario.setText(this.login_usuario.getText()+"9");
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // TODO add your handling code here:
+        if(this.login_usuario.getText().length()!=0){
+            this.login_usuario.setText(this.login_usuario.getText().substring(0, this.login_usuario.getText().length()-1));
+        }
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
@@ -428,7 +465,40 @@ public class FormCajero extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
+        msm_valida_acceso.setVisible(false);
+        int usuario = Integer.parseInt(login_usuario.getText());
+        String contrasena = String.copyValueOf(login_contrasena.getPassword());
+        try {
+            Usuarios u = Main.tablaUsuarios.queryForId(usuario);
+            if (u == null){
+                msm_valida_acceso_identificacion.setVisible(true);
+                msm_valida_acceso.setVisible(false);
+                msm_valida_acceso_identificacion.setForeground(Color.red);
+                msm_valida_acceso_identificacion.setText("No existe el usuario");
+            }else{
+                if (contrasena.equals(u.getClave())){
+                    msm_valida_acceso.setVisible(true);
+                    msm_valida_acceso_identificacion.setVisible(false);
+                    msm_valida_acceso.setForeground(Color.green);
+                    msm_valida_acceso.setText("Acceso autorizado");
+                    Thread.sleep(2000);
+                    FormCajero2 forma2 = new FormCajero2();
+                    forma2.setVisible(true);
+                    
+                }else{
+                    msm_valida_acceso.setVisible(true);
+                    msm_valida_acceso_identificacion.setVisible(false);
+                    msm_valida_acceso.setForeground(Color.red);
+                    msm_valida_acceso.setText("Acceso no autorizado, clave incorrecta");
+                    
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(FormCajero.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
+        } catch (InterruptedException ex) {
+            Logger.getLogger(FormCajero.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
@@ -555,6 +625,14 @@ public class FormCajero extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_login_usuarioActionPerformed
 
+    private void login_contrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_contrasenaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_login_contrasenaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.login_usuario.setText(this.login_usuario.getText()+"1");
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -591,6 +669,7 @@ public class FormCajero extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel detail_cajero;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -613,5 +692,8 @@ public class FormCajero extends javax.swing.JFrame {
     private javax.swing.JLabel label_usuario1;
     private javax.swing.JPasswordField login_contrasena;
     private javax.swing.JTextField login_usuario;
+    private javax.swing.JLabel msm_valida_acceso;
+    private javax.swing.JLabel msm_valida_acceso_identificacion;
     // End of variables declaration//GEN-END:variables
+
 }
