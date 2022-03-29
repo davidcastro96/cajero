@@ -10,17 +10,14 @@ public class Cuentas {
     private int cuenta;
     @DatabaseField(canBeNull = false)
     private Float saldo;
-    @DatabaseField(canBeNull = false, foreign = true, columnName = "cedula")
-    private Usuarios usuario;
 
     // Constructores
     public Cuentas() {
     }
 
-    public Cuentas(int cuenta, Float saldo, Usuarios usuario) {
+    public Cuentas(int cuenta, Float saldo) {
         this.cuenta = cuenta;
         this.saldo = saldo;
-        this.usuario = usuario;
     }
 
     // Getters & Setters
@@ -38,14 +35,6 @@ public class Cuentas {
 
     public void setSaldo(Float saldo) {
         this.saldo = saldo;
-    }
-
-    public Usuarios getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuarios usuario) {
-        this.usuario = usuario;
     }
 
     // Métodos

@@ -5,18 +5,25 @@
 package vista;
 
 import javax.swing.ImageIcon;
+import static modelo.Main.cedula;
+import static modelo.Main.saldo;
+import static modelo.Main.user;
 
 /**
  *
  * @author DAVIDCASTRO
  */
 public class FormCajero2 extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form FormCajero
      */
+    //Cuentas c = Main.tablaCuentas.queryForId()
     public FormCajero2() {
         initComponents();
+        variable_nombre.setText(user);
+        variable_cedula_screen2.setText(String.valueOf(cedula));
+        variable_saldo.setText(String.valueOf("$"+saldo));
     }
 
     /**
@@ -39,7 +46,9 @@ public class FormCajero2 extends javax.swing.JFrame {
         title_transferir = new javax.swing.JLabel();
         title_depositar = new javax.swing.JLabel();
         title_retirar = new javax.swing.JLabel();
-        variableHoraScreen2 = new javax.swing.JLabel();
+        title_cedula = new javax.swing.JLabel();
+        salir_screen2 = new javax.swing.JButton();
+        variable_cedula_screen2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -67,7 +76,7 @@ public class FormCajero2 extends javax.swing.JFrame {
         variable_saldo.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
         variable_saldo.setForeground(new java.awt.Color(255, 255, 255));
         variable_saldo.setText("$");
-        jPanel1.add(variable_saldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, -1, -1));
+        jPanel1.add(variable_saldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, -1, -1));
 
         variable_nombre.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
         variable_nombre.setForeground(new java.awt.Color(255, 255, 255));
@@ -82,7 +91,7 @@ public class FormCajero2 extends javax.swing.JFrame {
         title_saldo.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
         title_saldo.setForeground(new java.awt.Color(255, 255, 255));
         title_saldo.setText("Saldo actual");
-        jPanel1.add(title_saldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
+        jPanel1.add(title_saldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, -1, -1));
 
         jButtonDepositarScreen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/depositar.png"))); // NOI18N
         jButtonDepositarScreen.setBorder(null);
@@ -131,10 +140,37 @@ public class FormCajero2 extends javax.swing.JFrame {
         title_retirar.setText("retirar");
         jPanel1.add(title_retirar, new org.netbeans.lib.awtextra.AbsoluteConstraints(266, 215, -1, -1));
 
-        variableHoraScreen2.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        variableHoraScreen2.setForeground(new java.awt.Color(255, 255, 255));
-        variableHoraScreen2.setText("hora");
-        jPanel1.add(variableHoraScreen2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, -1, -1));
+        title_cedula.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
+        title_cedula.setForeground(new java.awt.Color(255, 255, 255));
+        title_cedula.setText("Cédula");
+        jPanel1.add(title_cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
+
+        salir_screen2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/salir.png"))); // NOI18N
+        salir_screen2.setBorder(null);
+        salir_screen2.setContentAreaFilled(false);
+        salir_screen2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        salir_screen2.setFocusable(false);
+        salir_screen2.setName(""); // NOI18N
+        salir_screen2.setPreferredSize(new java.awt.Dimension(45, 5));
+        salir_screen2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                salir_screen2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                salir_screen2MouseExited(evt);
+            }
+        });
+        salir_screen2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salir_screen2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(salir_screen2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 40, 40));
+
+        variable_cedula_screen2.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
+        variable_cedula_screen2.setForeground(new java.awt.Color(255, 255, 255));
+        variable_cedula_screen2.setText("cedula");
+        jPanel1.add(variable_cedula_screen2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, -1, -1));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/boton1blanco.png"))); // NOI18N
         jButton1.setBorder(null);
@@ -623,6 +659,20 @@ public class FormCajero2 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonDepositarScreenActionPerformed
 
+    private void salir_screen2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salir_screen2MouseEntered
+        salir_screen2.setIcon(new ImageIcon(getClass().getResource("/img/salirOscuro.png")));       // TODO add your handling code here:
+    }//GEN-LAST:event_salir_screen2MouseEntered
+
+    private void salir_screen2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salir_screen2MouseExited
+        salir_screen2.setIcon(new ImageIcon(getClass().getResource("/img/salir.png")));// TODO add your handling code here:
+    }//GEN-LAST:event_salir_screen2MouseExited
+
+    private void salir_screen2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salir_screen2ActionPerformed
+        this.setVisible(false);
+        FormCajero forma = new FormCajero();
+        forma.setVisible(true);
+    }//GEN-LAST:event_salir_screen2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -679,12 +729,14 @@ public class FormCajero2 extends javax.swing.JFrame {
     private javax.swing.JButton jButtonTransferirScreen;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton salir_screen2;
+    private javax.swing.JLabel title_cedula;
     private javax.swing.JLabel title_depositar;
     private javax.swing.JLabel title_nombre;
     private javax.swing.JLabel title_retirar;
     private javax.swing.JLabel title_saldo;
     private javax.swing.JLabel title_transferir;
-    private javax.swing.JLabel variableHoraScreen2;
+    private javax.swing.JLabel variable_cedula_screen2;
     private javax.swing.JLabel variable_nombre;
     private javax.swing.JLabel variable_saldo;
     // End of variables declaration//GEN-END:variables

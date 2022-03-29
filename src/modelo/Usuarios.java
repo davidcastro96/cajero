@@ -13,15 +13,18 @@ public class Usuarios {
     @DatabaseField(canBeNull = false)
     private String nombre;
     @DatabaseField(canBeNull = false)
+    private int cuenta;
+    @DatabaseField(canBeNull = false)
     private String clave;
 
     // Constructores
     public Usuarios() {
     }
 
-    public Usuarios(int cedula, String nombre, String clave, List<Cuentas> cuenta) {
+    public Usuarios(int cedula, String nombre, int cuenta, String clave) {
         this.cedula = cedula;
         this.nombre = nombre;
+        this.cuenta = cuenta;
         this.clave = clave;
     }
 
@@ -40,6 +43,14 @@ public class Usuarios {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public int getCuenta() {
+        return cuenta;
+    }
+
+    public void setCuenta(int cuenta) {
+        this.cuenta = cuenta;
     }
 
     public String getClave() {

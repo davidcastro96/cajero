@@ -17,7 +17,14 @@ import vista.FormCajero;
  * @author DAVIDCASTRO
  */
 public class Main {
+    
+    public static String user = ""; //Ya sabe el usuario
+    public static int cedula;
+    public static float saldo;
+    public static int cuenta;
+    
     public static Dao<Usuarios,Integer> tablaUsuarios;
+    public static Dao<Cuentas,Integer> tablaCuentas;
     
     public static void main(String[] args) throws SQLException {
         
@@ -29,14 +36,11 @@ public class Main {
         // Conectarse a la base de datos
         conexion = new JdbcConnectionSource(url);
         System.out.println("Conexión correcta");
-        tablaUsuarios = DaoManager.createDao(conexion,Usuarios.class);
+        tablaUsuarios = DaoManager.createDao(conexion, Usuarios.class);
+        tablaCuentas = DaoManager.createDao(conexion, Cuentas.class);
         
         FormCajero forma = new FormCajero();
         forma.setVisible(true);
-        
-    }
-    
-    public void cambiarInterfaz(){
         
     }
     

@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import modelo.Cuentas;
 import modelo.Main;
 import modelo.Usuarios;
 
@@ -89,6 +90,11 @@ public class FormCajero extends javax.swing.JFrame {
                 login_usuarioActionPerformed(evt);
             }
         });
+        login_usuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                login_usuarioKeyTyped(evt);
+            }
+        });
         jPanel1.add(login_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 170, 30));
 
         label_contrasena1.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
@@ -101,6 +107,11 @@ public class FormCajero extends javax.swing.JFrame {
         login_contrasena.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 login_contrasenaActionPerformed(evt);
+            }
+        });
+        login_contrasena.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                login_contrasenaKeyTyped(evt);
             }
         });
         jPanel1.add(login_contrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 170, 30));
@@ -485,6 +496,7 @@ public class FormCajero extends javax.swing.JFrame {
         String contrasena = String.copyValueOf(login_contrasena.getPassword());
         try {
             Usuarios u = Main.tablaUsuarios.queryForId(usuario);
+            //System.out.println(u);
             if (u == null) {
                 msm_valida_acceso_identificacion.setVisible(true);
                 msm_valida_acceso.setVisible(false);
@@ -496,6 +508,13 @@ public class FormCajero extends javax.swing.JFrame {
                     msm_valida_acceso_identificacion.setVisible(false);
                     msm_valida_acceso.setForeground(Color.green);
                     msm_valida_acceso.setText("Acceso autorizado");
+                    Main.user = u.getNombre();
+                    Main.cedula = u.getCedula();
+                    Main.cuenta = u.getCuenta();
+                    Cuentas c = Main.tablaCuentas.queryForId(u.getCuenta());
+                    Main.saldo = c.getSaldo();
+                    //System.out.println(c);
+                    //--
                     this.setVisible(false);
                     FormCajero2 forma2 = new FormCajero2();
                     forma2.setVisible(true);
@@ -508,7 +527,7 @@ public class FormCajero extends javax.swing.JFrame {
             }
         } catch (SQLException ex) {
             Logger.getLogger(FormCajero.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println(ex.getMessage());
+            //System.out.println(ex.getMessage());
         }
     }//GEN-LAST:event_jButton12ActionPerformed
 
@@ -644,6 +663,16 @@ public class FormCajero extends javax.swing.JFrame {
         this.login_usuario.setText(this.login_usuario.getText() + "1");
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void login_usuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_login_usuarioKeyTyped
+        if (login_usuario.getText().length() >= 10) {
+            evt.consume();// TODO add your handling code here:
+    }//GEN-LAST:event_login_usuarioKeyTyped
+    }
+    private void login_contrasenaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_login_contrasenaKeyTyped
+        if (login_contrasena.getText().length() >= 4) {
+            evt.consume();// TODO add your handling code here:
+    }//GEN-LAST:event_login_contrasenaKeyTyped
+    }
     /**
      * @param args the command line arguments
      */
