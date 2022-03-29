@@ -24,6 +24,7 @@ public class FormCajero extends javax.swing.JFrame {
      */
     public FormCajero() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -518,6 +519,7 @@ public class FormCajero extends javax.swing.JFrame {
                     this.setVisible(false);
                     FormCajero2 forma2 = new FormCajero2();
                     forma2.setVisible(true);
+                    forma2.setLocationRelativeTo(null);
                 } else {
                     msm_valida_acceso.setVisible(true);
                     msm_valida_acceso_identificacion.setVisible(false);

@@ -4,6 +4,7 @@
  */
 package vista;
 
+import java.text.DecimalFormat;
 import javax.swing.ImageIcon;
 import static modelo.Main.cedula;
 import static modelo.Main.saldo;
@@ -21,9 +22,10 @@ public class FormCajero2 extends javax.swing.JFrame {
     //Cuentas c = Main.tablaCuentas.queryForId()
     public FormCajero2() {
         initComponents();
+        DecimalFormat formatea = new DecimalFormat("###,###");
         variable_nombre.setText(user);
         variable_cedula_screen2.setText(String.valueOf(cedula));
-        variable_saldo.setText(String.valueOf("$"+saldo));
+        variable_saldo.setText("$"+(formatea.format(saldo)));
     }
 
     /**
