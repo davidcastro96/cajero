@@ -4,6 +4,7 @@
  */
 package vista;
 
+import java.awt.Color;
 import java.awt.Event;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
@@ -25,7 +26,7 @@ import modelo.Usuarios;
  * @author DAVIDCASTRO
  */
 public class FormCajero2 extends javax.swing.JFrame {
-    
+
     /**
      * Creates new form FormCajero
      */
@@ -37,30 +38,22 @@ public class FormCajero2 extends javax.swing.JFrame {
         DecimalFormat formatea = new DecimalFormat("###,###");
         variable_nombre.setText(user);
         variable_cedula_screen2.setText(String.valueOf(cedula));
-        variable_saldo.setText("$"+(formatea.format(saldo)));
-        
+        variable_saldo.setText("$" + (formatea.format(saldo)));
 
         //mapeo de datos en el combobox
         try {
-            List<Usuarios> u = Main.tablaUsuarios.queryForAll();
-            for(Usuarios l:u){
-                combo_cuentas_a_trans.addItem(l.getNombre()); 
+            List<Cuentas> c = Main.tablaCuentas.queryForAll();
+            for (Cuentas l : c) {
+                combo_cuentas_a_trans.addItem(String.valueOf(l.getCuenta()));
             }
-            
-                    // Buscar en el combobox el usuario que no se puede hacer tranferencia a si mismo
-            String busquedad = user;
-            System.out.println(user);
-            int indice = u.indexOf("David Castro");
-            System.out.println(indice);
 
-            combo_cuentas_a_trans.removeItem(indice);
-
-            
-            
-            
+            // Buscar en el combobox el usuario que no se puede hacer tranferencia a si mismo
+            //
         } catch (SQLException ex) {
             Logger.getLogger(FormCajero2.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        msm_confirma_transaccion.setVisible(false);
     }
 
     /**
@@ -84,6 +77,7 @@ public class FormCajero2 extends javax.swing.JFrame {
         title_depositar = new javax.swing.JLabel();
         title_retirar = new javax.swing.JLabel();
         title_cedula = new javax.swing.JLabel();
+        msm_confirma_transaccion = new javax.swing.JLabel();
         salir_screen2 = new javax.swing.JButton();
         variable_cedula_screen2 = new javax.swing.JLabel();
         panel_transfer = new javax.swing.JPanel();
@@ -190,6 +184,11 @@ public class FormCajero2 extends javax.swing.JFrame {
         title_cedula.setForeground(new java.awt.Color(255, 255, 255));
         title_cedula.setText("Cédula");
         jPanel1.add(title_cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
+
+        msm_confirma_transaccion.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
+        msm_confirma_transaccion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        msm_confirma_transaccion.setText("transferencia realizada");
+        jPanel1.add(msm_confirma_transaccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 287, 260, 30));
 
         salir_screen2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/salir.png"))); // NOI18N
         salir_screen2.setBorder(null);
@@ -640,22 +639,37 @@ public class FormCajero2 extends javax.swing.JFrame {
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // hacer dos update
-        if(panel_transfer.isVisible()){
-            System.out.println(valor_a_transferir.getText());
-            System.out.println(combo_cuentas_a_trans.getSelectedItem() + " " +valor_a_transferir);
-            
+        if (panel_transfer.isVisible()) {
+            System.out.println(combo_cuentas_a_trans.getSelectedItem().toString() + " " + valor_a_transferir.getText());
+            int cuenta_search_updated = Integer.parseInt(combo_cuentas_a_trans.getSelectedItem().toString());
+            int cuenta_origen = cedula;
             try {
-                Cuentas cuenta = new Cuentas();
-                cuenta.setSaldo(2);
-                Main.tablaCuentas.update(cuenta);
+                Cuentas c = Main.tablaCuentas.queryForId(cuenta_search_updated);
+                Float saldo_actual_destino = c.getSaldo();
+                Float saldo_total_origen = saldo_actual_destino + Float.parseFloat(valor_a_transferir.getText());
+                c.setSaldo(saldo_total_origen);
+                Main.tablaCuentas.update(c);
+//              ---------------------------------------------------------------- 
+                System.out.println(saldo_actual_destino);
+                msm_confirma_transaccion.setForeground(Color.green);
+                msm_confirma_transaccion.setVisible(true);
             } catch (SQLException ex) {
                 Logger.getLogger(FormCajero2.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-       
-            
+            //Actualizacion saldos origen
+            try {
+                Cuentas c1 = Main.tablaCuentas.queryForId(cuenta_origen);
+                Float saldo_actual_origen_fondos = c1.getSaldo();
+                Float saldo_nuevo_origen_fondos = saldo_actual_origen_fondos - Float.parseFloat(valor_a_transferir.getText());
+                c1.setSaldo(saldo_nuevo_origen_fondos);
+                Main.tablaCuentas.update(c1);
+//              ----------------------------------------------------------------  
+            } catch (SQLException ex) {
+                Logger.getLogger(FormCajero2.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
-        
+
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
@@ -807,11 +821,11 @@ public class FormCajero2 extends javax.swing.JFrame {
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         panel_transfer.setVisible(true);
         panel_transfer2.setVisible(true);
-                // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void combo_cuentas_a_transActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_cuentas_a_transActionPerformed
-       
+
     }//GEN-LAST:event_combo_cuentas_a_transActionPerformed
 
     /**
@@ -871,6 +885,7 @@ public class FormCajero2 extends javax.swing.JFrame {
     private javax.swing.JButton jButtonTransferirScreen;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel msm_confirma_transaccion;
     private javax.swing.JPanel panel_transfer;
     private javax.swing.JPanel panel_transfer2;
     private javax.swing.JButton salir_screen2;
