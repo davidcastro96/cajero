@@ -4,11 +4,20 @@
  */
 package vista;
 
+import java.sql.SQLException;
 import java.text.DecimalFormat;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
+import javax.swing.border.EmptyBorder;
+import modelo.Cuentas;
+import modelo.Main;
 import static modelo.Main.cedula;
 import static modelo.Main.saldo;
 import static modelo.Main.user;
+import modelo.Usuarios;
 
 /**
  *
@@ -22,10 +31,23 @@ public class FormCajero2 extends javax.swing.JFrame {
     //Cuentas c = Main.tablaCuentas.queryForId()
     public FormCajero2() {
         initComponents();
+        panel_transfer.setVisible(false);
+        panel_transfer2.setVisible(false);
         DecimalFormat formatea = new DecimalFormat("###,###");
         variable_nombre.setText(user);
         variable_cedula_screen2.setText(String.valueOf(cedula));
         variable_saldo.setText("$"+(formatea.format(saldo)));
+        
+        //mapeo de datos en el combobox
+        try {
+            List<Usuarios> u = Main.tablaUsuarios.queryForAll();
+            for(Usuarios l:u){
+                combo_cuentas_a_trans.addItem(l.getNombre());
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(FormCajero2.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -51,6 +73,10 @@ public class FormCajero2 extends javax.swing.JFrame {
         title_cedula = new javax.swing.JLabel();
         salir_screen2 = new javax.swing.JButton();
         variable_cedula_screen2 = new javax.swing.JLabel();
+        panel_transfer = new javax.swing.JPanel();
+        combo_cuentas_a_trans = new javax.swing.JComboBox<>();
+        panel_transfer2 = new javax.swing.JPanel();
+        valor_a_transferir = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -116,6 +142,11 @@ public class FormCajero2 extends javax.swing.JFrame {
         jButtonTransferirScreen.setFocusable(false);
         jButtonTransferirScreen.setName(""); // NOI18N
         jButtonTransferirScreen.setPreferredSize(new java.awt.Dimension(45, 5));
+        jButtonTransferirScreen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTransferirScreenActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButtonTransferirScreen, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 50, 70));
 
         jButtonRetirarScreen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/retirar.png"))); // NOI18N
@@ -173,6 +204,62 @@ public class FormCajero2 extends javax.swing.JFrame {
         variable_cedula_screen2.setForeground(new java.awt.Color(255, 255, 255));
         variable_cedula_screen2.setText("cedula");
         jPanel1.add(variable_cedula_screen2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, -1, -1));
+
+        panel_transfer.setBackground(new java.awt.Color(0, 51, 51));
+        panel_transfer.setToolTipText("");
+        panel_transfer.setDoubleBuffered(false);
+
+        combo_cuentas_a_trans.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combo_cuentas_a_transActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panel_transferLayout = new javax.swing.GroupLayout(panel_transfer);
+        panel_transfer.setLayout(panel_transferLayout);
+        panel_transferLayout.setHorizontalGroup(
+            panel_transferLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_transferLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(combo_cuentas_a_trans, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        panel_transferLayout.setVerticalGroup(
+            panel_transferLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_transferLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(combo_cuentas_a_trans, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(110, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(panel_transfer, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 153, 95, 150));
+
+        panel_transfer2.setBackground(new java.awt.Color(0, 51, 51));
+
+        valor_a_transferir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                valor_a_transferirActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panel_transfer2Layout = new javax.swing.GroupLayout(panel_transfer2);
+        panel_transfer2.setLayout(panel_transfer2Layout);
+        panel_transfer2Layout.setHorizontalGroup(
+            panel_transfer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_transfer2Layout.createSequentialGroup()
+                .addContainerGap(50, Short.MAX_VALUE)
+                .addComponent(valor_a_transferir, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35))
+        );
+        panel_transfer2Layout.setVerticalGroup(
+            panel_transfer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_transfer2Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(valor_a_transferir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(panel_transfer2, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 153, 200, 60));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/boton1blanco.png"))); // NOI18N
         jButton1.setBorder(null);
@@ -436,6 +523,11 @@ public class FormCajero2 extends javax.swing.JFrame {
                 jButton13MouseExited(evt);
             }
         });
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 365, 60, 80));
 
         jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/depositar.png"))); // NOI18N
@@ -534,7 +626,14 @@ public class FormCajero2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
+        // hacer dos update
+        if(panel_transfer.isVisible()){
+            System.out.println(valor_a_transferir.getText());
+            System.out.println(combo_cuentas_a_trans.getSelectedItem() + " " +valor_a_transferir);
+        }else{
+            System.out.println("no estas transfiriendo");
+        }
+        
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
@@ -675,6 +774,24 @@ public class FormCajero2 extends javax.swing.JFrame {
         forma.setVisible(true);
     }//GEN-LAST:event_salir_screen2ActionPerformed
 
+    private void jButtonTransferirScreenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTransferirScreenActionPerformed
+        //  Funcion del boton de transferir
+    }//GEN-LAST:event_jButtonTransferirScreenActionPerformed
+
+    private void valor_a_transferirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valor_a_transferirActionPerformed
+
+    }//GEN-LAST:event_valor_a_transferirActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        panel_transfer.setVisible(true);
+        panel_transfer2.setVisible(true);
+                // TODO add your handling code here:
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void combo_cuentas_a_transActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_cuentas_a_transActionPerformed
+       
+    }//GEN-LAST:event_combo_cuentas_a_transActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -711,6 +828,7 @@ public class FormCajero2 extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> combo_cuentas_a_trans;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -731,6 +849,8 @@ public class FormCajero2 extends javax.swing.JFrame {
     private javax.swing.JButton jButtonTransferirScreen;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel panel_transfer;
+    private javax.swing.JPanel panel_transfer2;
     private javax.swing.JButton salir_screen2;
     private javax.swing.JLabel title_cedula;
     private javax.swing.JLabel title_depositar;
@@ -738,8 +858,13 @@ public class FormCajero2 extends javax.swing.JFrame {
     private javax.swing.JLabel title_retirar;
     private javax.swing.JLabel title_saldo;
     private javax.swing.JLabel title_transferir;
+    private javax.swing.JTextField valor_a_transferir;
     private javax.swing.JLabel variable_cedula_screen2;
     private javax.swing.JLabel variable_nombre;
     private javax.swing.JLabel variable_saldo;
     // End of variables declaration//GEN-END:variables
+
+    private String selectedItemReminder(JComboBox<String> cuenta_a_transferir) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JTextField;
 import modelo.Cuentas;
 import modelo.Main;
 import modelo.Usuarios;
@@ -26,6 +27,15 @@ public class FormCajero extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
     }
+    
+    String fieldActivo = "login_usuario";
+
+    private void jTextField1_Focus() {
+    fieldActivo = "login_usuario";
+    }
+    private void jTextField2_Focus() {
+    fieldActivo = "login_contrasena";
+    } 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -450,7 +460,14 @@ public class FormCajero extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.login_usuario.setText(this.login_usuario.getText() + "2");
+    JTextField field = null;
+    switch (fieldActivo)
+        {
+            case "login_usuario": field = login_usuario; break;
+            case "login_contrasena": field = login_contrasena; break;
+        }
+        String t = field.getText();
+        field.setText(t + "2");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
