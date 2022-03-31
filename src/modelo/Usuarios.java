@@ -4,6 +4,7 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 import java.util.List;
+import javax.swing.JLabel;
 
 @DatabaseTable(tableName = "usuarios")
 public class Usuarios {
@@ -67,5 +68,9 @@ public class Usuarios {
     }
     public void cerrar_sesion(){
         System.out.println("cerrando");
+    }
+
+    public boolean contains(JLabel variable_nombre) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

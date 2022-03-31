@@ -4,6 +4,7 @@
  */
 package vista;
 
+import java.awt.Event;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.List;
@@ -38,12 +39,24 @@ public class FormCajero2 extends javax.swing.JFrame {
         variable_cedula_screen2.setText(String.valueOf(cedula));
         variable_saldo.setText("$"+(formatea.format(saldo)));
         
+
         //mapeo de datos en el combobox
         try {
             List<Usuarios> u = Main.tablaUsuarios.queryForAll();
             for(Usuarios l:u){
-                combo_cuentas_a_trans.addItem(l.getNombre());
+                combo_cuentas_a_trans.addItem(l.getNombre()); 
             }
+            
+                    // Buscar en el combobox el usuario que no se puede hacer tranferencia a si mismo
+            String busquedad = user;
+            System.out.println(user);
+            int indice = u.indexOf("David Castro");
+            System.out.println(indice);
+
+            combo_cuentas_a_trans.removeItem(indice);
+
+            
+            
             
         } catch (SQLException ex) {
             Logger.getLogger(FormCajero2.class.getName()).log(Level.SEVERE, null, ex);
@@ -630,8 +643,17 @@ public class FormCajero2 extends javax.swing.JFrame {
         if(panel_transfer.isVisible()){
             System.out.println(valor_a_transferir.getText());
             System.out.println(combo_cuentas_a_trans.getSelectedItem() + " " +valor_a_transferir);
-        }else{
-            System.out.println("no estas transfiriendo");
+            
+            try {
+                Cuentas cuenta = new Cuentas();
+                cuenta.setSaldo(2);
+                Main.tablaCuentas.update(cuenta);
+            } catch (SQLException ex) {
+                Logger.getLogger(FormCajero2.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+       
+            
         }
         
     }//GEN-LAST:event_jButton12ActionPerformed
@@ -864,7 +886,4 @@ public class FormCajero2 extends javax.swing.JFrame {
     private javax.swing.JLabel variable_saldo;
     // End of variables declaration//GEN-END:variables
 
-    private String selectedItemReminder(JComboBox<String> cuenta_a_transferir) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }

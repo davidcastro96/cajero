@@ -50,4 +50,8 @@ public class Cuentas {
     public void sabers_saldo(){
         System.out.println("saber saldo");
     }
+
+    public void setSaldo(int i) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
