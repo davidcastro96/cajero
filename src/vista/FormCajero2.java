@@ -123,21 +123,25 @@ public class FormCajero2 extends javax.swing.JFrame {
         variable_saldo.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
         variable_saldo.setForeground(new java.awt.Color(255, 255, 255));
         variable_saldo.setText("$");
+        variable_saldo.setFocusable(false);
         jPanel1.add(variable_saldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, -1, -1));
 
         variable_nombre.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
         variable_nombre.setForeground(new java.awt.Color(255, 255, 255));
         variable_nombre.setText("nombre");
+        variable_nombre.setFocusable(false);
         jPanel1.add(variable_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, -1, -1));
 
         title_nombre.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
         title_nombre.setForeground(new java.awt.Color(255, 255, 255));
         title_nombre.setText("Nombre");
+        title_nombre.setFocusable(false);
         jPanel1.add(title_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, -1, -1));
 
         title_saldo.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
         title_saldo.setForeground(new java.awt.Color(255, 255, 255));
         title_saldo.setText("Saldo actual");
+        title_saldo.setFocusable(false);
         jPanel1.add(title_saldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, -1, -1));
 
         jButtonDepositarScreen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/depositar.png"))); // NOI18N
@@ -180,26 +184,31 @@ public class FormCajero2 extends javax.swing.JFrame {
         title_transferir.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         title_transferir.setForeground(new java.awt.Color(255, 255, 255));
         title_transferir.setText("transferir");
+        title_transferir.setFocusable(false);
         jPanel1.add(title_transferir, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 215, -1, -1));
 
         title_depositar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         title_depositar.setForeground(new java.awt.Color(255, 255, 255));
         title_depositar.setText("depositar");
+        title_depositar.setFocusable(false);
         jPanel1.add(title_depositar, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 215, -1, -1));
 
         title_retirar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         title_retirar.setForeground(new java.awt.Color(255, 255, 255));
         title_retirar.setText("retirar");
+        title_retirar.setFocusable(false);
         jPanel1.add(title_retirar, new org.netbeans.lib.awtextra.AbsoluteConstraints(266, 215, -1, -1));
 
         title_cedula.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
         title_cedula.setForeground(new java.awt.Color(255, 255, 255));
         title_cedula.setText("Cédula");
+        title_cedula.setFocusable(false);
         jPanel1.add(title_cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
 
         msm_confirma_transaccion.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
         msm_confirma_transaccion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         msm_confirma_transaccion.setText("transferencia realizada");
+        msm_confirma_transaccion.setFocusable(false);
         jPanel1.add(msm_confirma_transaccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 143, 260, 30));
 
         salir_screen2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/salir.png"))); // NOI18N
@@ -227,11 +236,13 @@ public class FormCajero2 extends javax.swing.JFrame {
         variable_cedula_screen2.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
         variable_cedula_screen2.setForeground(new java.awt.Color(255, 255, 255));
         variable_cedula_screen2.setText("cedula");
+        variable_cedula_screen2.setFocusable(false);
         jPanel1.add(variable_cedula_screen2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, -1, -1));
 
         panel_transfer.setBackground(new java.awt.Color(0, 51, 51));
         panel_transfer.setToolTipText("");
         panel_transfer.setDoubleBuffered(false);
+        panel_transfer.setFocusable(false);
 
         combo_cuentas_a_trans.setOpaque(true);
         combo_cuentas_a_trans.addActionListener(new java.awt.event.ActionListener() {
@@ -260,6 +271,7 @@ public class FormCajero2 extends javax.swing.JFrame {
         jPanel1.add(panel_transfer, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 163, 95, 140));
 
         panel_transfer2.setBackground(new java.awt.Color(0, 51, 51));
+        panel_transfer2.setFocusable(false);
 
         valor_a_transferir.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
         valor_a_transferir.setBorder(null);
@@ -289,9 +301,11 @@ public class FormCajero2 extends javax.swing.JFrame {
         jPanel1.add(panel_transfer2, new org.netbeans.lib.awtextra.AbsoluteConstraints(147, 163, 190, 50));
 
         panel_depositar1.setBackground(new java.awt.Color(0, 51, 51));
+        panel_depositar1.setFocusable(false);
 
         panel_deposi.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
         panel_deposi.setBorder(null);
+        panel_deposi.setFocusable(false);
         panel_deposi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 panel_deposiActionPerformed(evt);
@@ -320,6 +334,7 @@ public class FormCajero2 extends javax.swing.JFrame {
         panel_depositar.setBackground(new java.awt.Color(0, 51, 51));
         panel_depositar.setToolTipText("");
         panel_depositar.setDoubleBuffered(false);
+        panel_depositar.setFocusable(false);
 
         javax.swing.GroupLayout panel_depositarLayout = new javax.swing.GroupLayout(panel_depositar);
         panel_depositar.setLayout(panel_depositarLayout);
@@ -335,9 +350,11 @@ public class FormCajero2 extends javax.swing.JFrame {
         jPanel1.add(panel_depositar, new org.netbeans.lib.awtextra.AbsoluteConstraints(155, 163, 95, 140));
 
         panel_retirar.setBackground(new java.awt.Color(0, 51, 51));
+        panel_retirar.setFocusable(false);
 
         panel_reti1.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
         panel_reti1.setBorder(null);
+        panel_reti1.setFocusable(false);
         panel_reti1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 panel_reti1ActionPerformed(evt);
@@ -366,6 +383,7 @@ public class FormCajero2 extends javax.swing.JFrame {
         panel_retirar1.setBackground(new java.awt.Color(0, 51, 51));
         panel_retirar1.setToolTipText("");
         panel_retirar1.setDoubleBuffered(false);
+        panel_retirar1.setFocusable(false);
 
         javax.swing.GroupLayout panel_retirar1Layout = new javax.swing.GroupLayout(panel_retirar1);
         panel_retirar1.setLayout(panel_retirar1Layout);
