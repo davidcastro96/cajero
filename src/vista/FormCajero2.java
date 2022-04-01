@@ -39,6 +39,8 @@ public class FormCajero2 extends javax.swing.JFrame {
         panel_transfer2.setVisible(false);
         panel_depositar1.setVisible(false);
         panel_depositar.setVisible(false);
+        panel_retirar.setVisible(false);
+        panel_retirar1.setVisible(false);
         DecimalFormat formatea = new DecimalFormat("###,###");
         variable_nombre.setText(user);
         variable_cedula_screen2.setText(String.valueOf(cedula));
@@ -91,9 +93,9 @@ public class FormCajero2 extends javax.swing.JFrame {
         panel_depositar1 = new javax.swing.JPanel();
         panel_deposi = new javax.swing.JTextField();
         panel_depositar = new javax.swing.JPanel();
-        panel_depositar2 = new javax.swing.JPanel();
+        panel_retirar = new javax.swing.JPanel();
         panel_deposi1 = new javax.swing.JTextField();
-        panel_depositar3 = new javax.swing.JPanel();
+        panel_retirar1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -332,7 +334,7 @@ public class FormCajero2 extends javax.swing.JFrame {
 
         jPanel1.add(panel_depositar, new org.netbeans.lib.awtextra.AbsoluteConstraints(155, 163, 95, 140));
 
-        panel_depositar2.setBackground(new java.awt.Color(0, 51, 51));
+        panel_retirar.setBackground(new java.awt.Color(0, 51, 51));
 
         panel_deposi1.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
         panel_deposi1.setBorder(null);
@@ -342,41 +344,41 @@ public class FormCajero2 extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout panel_depositar2Layout = new javax.swing.GroupLayout(panel_depositar2);
-        panel_depositar2.setLayout(panel_depositar2Layout);
-        panel_depositar2Layout.setHorizontalGroup(
-            panel_depositar2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel_depositar2Layout.createSequentialGroup()
+        javax.swing.GroupLayout panel_retirarLayout = new javax.swing.GroupLayout(panel_retirar);
+        panel_retirar.setLayout(panel_retirarLayout);
+        panel_retirarLayout.setHorizontalGroup(
+            panel_retirarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_retirarLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(panel_deposi1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(43, Short.MAX_VALUE))
         );
-        panel_depositar2Layout.setVerticalGroup(
-            panel_depositar2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel_depositar2Layout.createSequentialGroup()
+        panel_retirarLayout.setVerticalGroup(
+            panel_retirarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_retirarLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(panel_deposi1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        jPanel1.add(panel_depositar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 163, 180, 50));
+        jPanel1.add(panel_retirar, new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 163, 180, 50));
 
-        panel_depositar3.setBackground(new java.awt.Color(0, 51, 51));
-        panel_depositar3.setToolTipText("");
-        panel_depositar3.setDoubleBuffered(false);
+        panel_retirar1.setBackground(new java.awt.Color(0, 51, 51));
+        panel_retirar1.setToolTipText("");
+        panel_retirar1.setDoubleBuffered(false);
 
-        javax.swing.GroupLayout panel_depositar3Layout = new javax.swing.GroupLayout(panel_depositar3);
-        panel_depositar3.setLayout(panel_depositar3Layout);
-        panel_depositar3Layout.setHorizontalGroup(
-            panel_depositar3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panel_retirar1Layout = new javax.swing.GroupLayout(panel_retirar1);
+        panel_retirar1.setLayout(panel_retirar1Layout);
+        panel_retirar1Layout.setHorizontalGroup(
+            panel_retirar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 95, Short.MAX_VALUE)
         );
-        panel_depositar3Layout.setVerticalGroup(
-            panel_depositar3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panel_retirar1Layout.setVerticalGroup(
+            panel_retirar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 140, Short.MAX_VALUE)
         );
 
-        jPanel1.add(panel_depositar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(155, 163, 95, 140));
+        jPanel1.add(panel_retirar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(242, 163, 95, 140));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/boton1blanco.png"))); // NOI18N
         jButton1.setBorder(null);
@@ -684,6 +686,11 @@ public class FormCajero2 extends javax.swing.JFrame {
                 jButton15MouseExited(evt);
             }
         });
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 491, 60, 80));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -750,11 +757,9 @@ public class FormCajero2 extends javax.swing.JFrame {
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         msm_confirma_transaccion.setVisible(false);
         if (panel_transfer.isVisible()) {
-            System.out.println(combo_cuentas_a_trans.getSelectedItem().toString() + " " + valor_a_transferir.getText());
             int cuenta_search_updated = Integer.parseInt(combo_cuentas_a_trans.getSelectedItem().toString());
             int cuenta_origen = cuenta;
-
-            //Actualizacion saldos origen
+            
             try {
                 Cuentas c2 = Main.tablaCuentas.queryForId(cuenta_origen);
                 Float saldo_actual_origen_fondos = c2.getSaldo();
@@ -766,14 +771,10 @@ public class FormCajero2 extends javax.swing.JFrame {
                     msm_confirma_transaccion.setText("saldo insuficiente");
                 } else {
                     try {
-                        System.out.println("here");
                         Cuentas c = Main.tablaCuentas.queryForId(cuenta_search_updated);
                         Float saldo_actual_destino = c.getSaldo();
-                        //       10.000
-                        //       2.000.000
-                        //obtengo el saldo de destino
+
                         Float saldo_total_destino = saldo_actual_destino + Float.parseFloat(valor_a_transferir.getText());
-                        //total 
                         c.setSaldo(saldo_total_destino);
 
                         Main.tablaCuentas.update(c);
@@ -781,7 +782,6 @@ public class FormCajero2 extends javax.swing.JFrame {
                         c2.setSaldo(saldo_nuevo_origen_fondos);
                         Main.tablaCuentas.update(c2);
 //                      -------------------------------------------------------- 
-                        System.out.println(saldo_actual_destino);
                         msm_confirma_transaccion.setForeground(Color.green);
                         msm_confirma_transaccion.setVisible(true);
                     } catch (SQLException ex) {
@@ -793,6 +793,12 @@ public class FormCajero2 extends javax.swing.JFrame {
                 Logger.getLogger(FormCajero2.class.getName()).log(Level.SEVERE, null, ex);
             }
 
+        }
+        if(){
+            
+        }
+        if(){
+            
         }
 
     }//GEN-LAST:event_jButton12ActionPerformed
@@ -944,6 +950,8 @@ public class FormCajero2 extends javax.swing.JFrame {
         panel_transfer2.setVisible(true);
         panel_depositar1.setVisible(false);
         panel_depositar.setVisible(false);
+        panel_retirar.setVisible(false);
+        panel_retirar1.setVisible(false);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton13ActionPerformed
@@ -965,11 +973,23 @@ public class FormCajero2 extends javax.swing.JFrame {
         panel_depositar.setVisible(true);
         panel_transfer.setVisible(false);
         panel_transfer2.setVisible(false);
+        panel_retirar.setVisible(false);
+        panel_retirar1.setVisible(false);
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void panel_deposi1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_panel_deposi1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_panel_deposi1ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        panel_retirar.setVisible(true);
+        panel_retirar1.setVisible(true);
+        panel_transfer.setVisible(false);
+        panel_transfer2.setVisible(false);
+        panel_depositar1.setVisible(false);
+        panel_depositar.setVisible(false);
+
+    }//GEN-LAST:event_jButton15ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1033,8 +1053,8 @@ public class FormCajero2 extends javax.swing.JFrame {
     private javax.swing.JTextField panel_deposi1;
     private javax.swing.JPanel panel_depositar;
     private javax.swing.JPanel panel_depositar1;
-    private javax.swing.JPanel panel_depositar2;
-    private javax.swing.JPanel panel_depositar3;
+    private javax.swing.JPanel panel_retirar;
+    private javax.swing.JPanel panel_retirar1;
     private javax.swing.JPanel panel_transfer;
     private javax.swing.JPanel panel_transfer2;
     private javax.swing.JButton salir_screen2;
