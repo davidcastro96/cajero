@@ -58,8 +58,6 @@ public class FormCajero2 extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(FormCajero2.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
         msm_confirma_transaccion.setVisible(false);
     }
 
@@ -245,6 +243,7 @@ public class FormCajero2 extends javax.swing.JFrame {
         panel_transfer.setDoubleBuffered(false);
         panel_transfer.setFocusable(false);
 
+        combo_cuentas_a_trans.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
         combo_cuentas_a_trans.setOpaque(true);
         combo_cuentas_a_trans.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -266,7 +265,7 @@ public class FormCajero2 extends javax.swing.JFrame {
             .addGroup(panel_transferLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(combo_cuentas_a_trans, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
 
         jPanel1.add(panel_transfer, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 163, 95, 140));
@@ -306,7 +305,6 @@ public class FormCajero2 extends javax.swing.JFrame {
 
         panel_deposi.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
         panel_deposi.setBorder(null);
-        panel_deposi.setFocusable(false);
         panel_deposi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 panel_deposiActionPerformed(evt);
@@ -355,7 +353,6 @@ public class FormCajero2 extends javax.swing.JFrame {
 
         panel_reti1.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
         panel_reti1.setBorder(null);
-        panel_reti1.setFocusable(false);
         panel_reti1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 panel_reti1ActionPerformed(evt);
@@ -774,6 +771,7 @@ public class FormCajero2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        DecimalFormat formatea = new DecimalFormat("###,###");
         msm_confirma_transaccion.setVisible(false);
         if (valor_a_transferir.getText().length() == 0) {
             msm_confirma_transaccion.setForeground(Color.red);
@@ -805,6 +803,7 @@ public class FormCajero2 extends javax.swing.JFrame {
 
                             c2.setSaldo(saldo_nuevo_origen_fondos);
                             Main.tablaCuentas.update(c2);
+                            variable_saldo.setText("$" + (formatea.format(c2.getSaldo())));
 //                      -------------------------------------------------------- 
                             msm_confirma_transaccion.setForeground(Color.green);
                             msm_confirma_transaccion.setVisible(true);
@@ -836,6 +835,7 @@ public class FormCajero2 extends javax.swing.JFrame {
                     c.setSaldo(saldo_total);
 
                     Main.tablaCuentas.update(c);
+                    variable_saldo.setText("$" + (formatea.format(c.getSaldo())));
 //              -------------------------------------------------------- 
                     msm_confirma_transaccion.setForeground(Color.green);
                     msm_confirma_transaccion.setVisible(true);
@@ -865,6 +865,7 @@ public class FormCajero2 extends javax.swing.JFrame {
                             c.setSaldo(saldo_total);
 
                             Main.tablaCuentas.update(c);
+                            variable_saldo.setText("$" + (formatea.format(c.getSaldo())));
 //                      -------------------------------------------------------- 
                             msm_confirma_transaccion.setForeground(Color.green);
                             msm_confirma_transaccion.setVisible(true);
