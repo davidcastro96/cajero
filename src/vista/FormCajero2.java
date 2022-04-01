@@ -14,9 +14,11 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.border.EmptyBorder;
+import modelo.Conexiondb;
 import modelo.Cuentas;
 import modelo.Main;
 import static modelo.Main.cedula;
+import static modelo.Main.cuenta;
 import static modelo.Main.saldo;
 import static modelo.Main.user;
 import modelo.Usuarios;
@@ -35,6 +37,8 @@ public class FormCajero2 extends javax.swing.JFrame {
         initComponents();
         panel_transfer.setVisible(false);
         panel_transfer2.setVisible(false);
+        panel_depositar1.setVisible(false);
+        panel_depositar.setVisible(false);
         DecimalFormat formatea = new DecimalFormat("###,###");
         variable_nombre.setText(user);
         variable_cedula_screen2.setText(String.valueOf(cedula));
@@ -84,6 +88,12 @@ public class FormCajero2 extends javax.swing.JFrame {
         combo_cuentas_a_trans = new javax.swing.JComboBox<>();
         panel_transfer2 = new javax.swing.JPanel();
         valor_a_transferir = new javax.swing.JTextField();
+        panel_depositar1 = new javax.swing.JPanel();
+        panel_deposi = new javax.swing.JTextField();
+        panel_depositar = new javax.swing.JPanel();
+        panel_depositar2 = new javax.swing.JPanel();
+        panel_deposi1 = new javax.swing.JTextField();
+        panel_depositar3 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -188,7 +198,7 @@ public class FormCajero2 extends javax.swing.JFrame {
         msm_confirma_transaccion.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
         msm_confirma_transaccion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         msm_confirma_transaccion.setText("transferencia realizada");
-        jPanel1.add(msm_confirma_transaccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 287, 260, 30));
+        jPanel1.add(msm_confirma_transaccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 143, 260, 30));
 
         salir_screen2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/salir.png"))); // NOI18N
         salir_screen2.setBorder(null);
@@ -221,6 +231,7 @@ public class FormCajero2 extends javax.swing.JFrame {
         panel_transfer.setToolTipText("");
         panel_transfer.setDoubleBuffered(false);
 
+        combo_cuentas_a_trans.setOpaque(true);
         combo_cuentas_a_trans.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 combo_cuentas_a_transActionPerformed(evt);
@@ -231,23 +242,25 @@ public class FormCajero2 extends javax.swing.JFrame {
         panel_transfer.setLayout(panel_transferLayout);
         panel_transferLayout.setHorizontalGroup(
             panel_transferLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_transferLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(panel_transferLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(combo_cuentas_a_trans, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         panel_transferLayout.setVerticalGroup(
             panel_transferLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_transferLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(14, 14, 14)
                 .addComponent(combo_cuentas_a_trans, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
 
-        jPanel1.add(panel_transfer, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 153, 95, 150));
+        jPanel1.add(panel_transfer, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 163, 95, 140));
 
         panel_transfer2.setBackground(new java.awt.Color(0, 51, 51));
 
+        valor_a_transferir.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
+        valor_a_transferir.setBorder(null);
         valor_a_transferir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 valor_a_transferirActionPerformed(evt);
@@ -258,20 +271,112 @@ public class FormCajero2 extends javax.swing.JFrame {
         panel_transfer2.setLayout(panel_transfer2Layout);
         panel_transfer2Layout.setHorizontalGroup(
             panel_transfer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_transfer2Layout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
+            .addGroup(panel_transfer2Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
                 .addComponent(valor_a_transferir, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         panel_transfer2Layout.setVerticalGroup(
             panel_transfer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_transfer2Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(valor_a_transferir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addGap(15, 15, 15)
+                .addComponent(valor_a_transferir, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        jPanel1.add(panel_transfer2, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 153, 200, 60));
+        jPanel1.add(panel_transfer2, new org.netbeans.lib.awtextra.AbsoluteConstraints(147, 163, 190, 50));
+
+        panel_depositar1.setBackground(new java.awt.Color(0, 51, 51));
+
+        panel_deposi.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
+        panel_deposi.setBorder(null);
+        panel_deposi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                panel_deposiActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panel_depositar1Layout = new javax.swing.GroupLayout(panel_depositar1);
+        panel_depositar1.setLayout(panel_depositar1Layout);
+        panel_depositar1Layout.setHorizontalGroup(
+            panel_depositar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_depositar1Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(panel_deposi, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(43, Short.MAX_VALUE))
+        );
+        panel_depositar1Layout.setVerticalGroup(
+            panel_depositar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_depositar1Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(panel_deposi, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(panel_depositar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 163, 180, 50));
+
+        panel_depositar.setBackground(new java.awt.Color(0, 51, 51));
+        panel_depositar.setToolTipText("");
+        panel_depositar.setDoubleBuffered(false);
+
+        javax.swing.GroupLayout panel_depositarLayout = new javax.swing.GroupLayout(panel_depositar);
+        panel_depositar.setLayout(panel_depositarLayout);
+        panel_depositarLayout.setHorizontalGroup(
+            panel_depositarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 95, Short.MAX_VALUE)
+        );
+        panel_depositarLayout.setVerticalGroup(
+            panel_depositarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 140, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(panel_depositar, new org.netbeans.lib.awtextra.AbsoluteConstraints(155, 163, 95, 140));
+
+        panel_depositar2.setBackground(new java.awt.Color(0, 51, 51));
+
+        panel_deposi1.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
+        panel_deposi1.setBorder(null);
+        panel_deposi1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                panel_deposi1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panel_depositar2Layout = new javax.swing.GroupLayout(panel_depositar2);
+        panel_depositar2.setLayout(panel_depositar2Layout);
+        panel_depositar2Layout.setHorizontalGroup(
+            panel_depositar2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_depositar2Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(panel_deposi1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(43, Short.MAX_VALUE))
+        );
+        panel_depositar2Layout.setVerticalGroup(
+            panel_depositar2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_depositar2Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(panel_deposi1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(panel_depositar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 163, 180, 50));
+
+        panel_depositar3.setBackground(new java.awt.Color(0, 51, 51));
+        panel_depositar3.setToolTipText("");
+        panel_depositar3.setDoubleBuffered(false);
+
+        javax.swing.GroupLayout panel_depositar3Layout = new javax.swing.GroupLayout(panel_depositar3);
+        panel_depositar3.setLayout(panel_depositar3Layout);
+        panel_depositar3Layout.setHorizontalGroup(
+            panel_depositar3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 95, Short.MAX_VALUE)
+        );
+        panel_depositar3Layout.setVerticalGroup(
+            panel_depositar3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 140, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(panel_depositar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(155, 163, 95, 140));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/boton1blanco.png"))); // NOI18N
         jButton1.setBorder(null);
@@ -557,6 +662,11 @@ public class FormCajero2 extends javax.swing.JFrame {
                 jButton14MouseExited(evt);
             }
         });
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 428, 60, 80));
 
         jButton15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/retirar.png"))); // NOI18N
@@ -638,31 +748,46 @@ public class FormCajero2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // hacer dos update
+        msm_confirma_transaccion.setVisible(false);
         if (panel_transfer.isVisible()) {
             System.out.println(combo_cuentas_a_trans.getSelectedItem().toString() + " " + valor_a_transferir.getText());
             int cuenta_search_updated = Integer.parseInt(combo_cuentas_a_trans.getSelectedItem().toString());
-            int cuenta_origen = cedula;
-            try {
-                Cuentas c = Main.tablaCuentas.queryForId(cuenta_search_updated);
-                Float saldo_actual_destino = c.getSaldo();
-                Float saldo_total_origen = saldo_actual_destino + Float.parseFloat(valor_a_transferir.getText());
-                c.setSaldo(saldo_total_origen);
-                Main.tablaCuentas.update(c);
-//              ---------------------------------------------------------------- 
-                System.out.println(saldo_actual_destino);
-                msm_confirma_transaccion.setForeground(Color.green);
-                msm_confirma_transaccion.setVisible(true);
-            } catch (SQLException ex) {
-                Logger.getLogger(FormCajero2.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            int cuenta_origen = cuenta;
+
             //Actualizacion saldos origen
             try {
-                Cuentas c1 = Main.tablaCuentas.queryForId(cuenta_origen);
-                Float saldo_actual_origen_fondos = c1.getSaldo();
+                Cuentas c2 = Main.tablaCuentas.queryForId(cuenta_origen);
+                Float saldo_actual_origen_fondos = c2.getSaldo();
                 Float saldo_nuevo_origen_fondos = saldo_actual_origen_fondos - Float.parseFloat(valor_a_transferir.getText());
-                c1.setSaldo(saldo_nuevo_origen_fondos);
-                Main.tablaCuentas.update(c1);
+
+                if (saldo_actual_origen_fondos < Float.parseFloat(valor_a_transferir.getText()) || saldo_actual_origen_fondos == 0) {
+                    msm_confirma_transaccion.setForeground(Color.red);
+                    msm_confirma_transaccion.setVisible(true);
+                    msm_confirma_transaccion.setText("saldo insuficiente");
+                } else {
+                    try {
+                        System.out.println("here");
+                        Cuentas c = Main.tablaCuentas.queryForId(cuenta_search_updated);
+                        Float saldo_actual_destino = c.getSaldo();
+                        //       10.000
+                        //       2.000.000
+                        //obtengo el saldo de destino
+                        Float saldo_total_destino = saldo_actual_destino + Float.parseFloat(valor_a_transferir.getText());
+                        //total 
+                        c.setSaldo(saldo_total_destino);
+
+                        Main.tablaCuentas.update(c);
+
+                        c2.setSaldo(saldo_nuevo_origen_fondos);
+                        Main.tablaCuentas.update(c2);
+//                      -------------------------------------------------------- 
+                        System.out.println(saldo_actual_destino);
+                        msm_confirma_transaccion.setForeground(Color.green);
+                        msm_confirma_transaccion.setVisible(true);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(FormCajero2.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
 //              ----------------------------------------------------------------  
             } catch (SQLException ex) {
                 Logger.getLogger(FormCajero2.class.getName()).log(Level.SEVERE, null, ex);
@@ -814,19 +939,37 @@ public class FormCajero2 extends javax.swing.JFrame {
         //  Funcion del boton de transferir
     }//GEN-LAST:event_jButtonTransferirScreenActionPerformed
 
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        panel_transfer.setVisible(true);
+        panel_transfer2.setVisible(true);
+        panel_depositar1.setVisible(false);
+        panel_depositar.setVisible(false);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton13ActionPerformed
+
     private void valor_a_transferirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valor_a_transferirActionPerformed
 
     }//GEN-LAST:event_valor_a_transferirActionPerformed
 
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        panel_transfer.setVisible(true);
-        panel_transfer2.setVisible(true);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton13ActionPerformed
-
     private void combo_cuentas_a_transActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_cuentas_a_transActionPerformed
 
     }//GEN-LAST:event_combo_cuentas_a_transActionPerformed
+
+    private void panel_deposiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_panel_deposiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_panel_deposiActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        panel_depositar1.setVisible(true);
+        panel_depositar.setVisible(true);
+        panel_transfer.setVisible(false);
+        panel_transfer2.setVisible(false);
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void panel_deposi1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_panel_deposi1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_panel_deposi1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -886,6 +1029,12 @@ public class FormCajero2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel msm_confirma_transaccion;
+    private javax.swing.JTextField panel_deposi;
+    private javax.swing.JTextField panel_deposi1;
+    private javax.swing.JPanel panel_depositar;
+    private javax.swing.JPanel panel_depositar1;
+    private javax.swing.JPanel panel_depositar2;
+    private javax.swing.JPanel panel_depositar3;
     private javax.swing.JPanel panel_transfer;
     private javax.swing.JPanel panel_transfer2;
     private javax.swing.JButton salir_screen2;
