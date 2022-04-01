@@ -94,7 +94,7 @@ public class FormCajero2 extends javax.swing.JFrame {
         panel_deposi = new javax.swing.JTextField();
         panel_depositar = new javax.swing.JPanel();
         panel_retirar = new javax.swing.JPanel();
-        panel_deposi1 = new javax.swing.JTextField();
+        panel_reti1 = new javax.swing.JTextField();
         panel_retirar1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -336,11 +336,11 @@ public class FormCajero2 extends javax.swing.JFrame {
 
         panel_retirar.setBackground(new java.awt.Color(0, 51, 51));
 
-        panel_deposi1.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
-        panel_deposi1.setBorder(null);
-        panel_deposi1.addActionListener(new java.awt.event.ActionListener() {
+        panel_reti1.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
+        panel_reti1.setBorder(null);
+        panel_reti1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                panel_deposi1ActionPerformed(evt);
+                panel_reti1ActionPerformed(evt);
             }
         });
 
@@ -350,14 +350,14 @@ public class FormCajero2 extends javax.swing.JFrame {
             panel_retirarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_retirarLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(panel_deposi1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panel_reti1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(43, Short.MAX_VALUE))
         );
         panel_retirarLayout.setVerticalGroup(
             panel_retirarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_retirarLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(panel_deposi1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panel_reti1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -756,49 +756,110 @@ public class FormCajero2 extends javax.swing.JFrame {
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         msm_confirma_transaccion.setVisible(false);
-        if (panel_transfer.isVisible()) {
-            int cuenta_search_updated = Integer.parseInt(combo_cuentas_a_trans.getSelectedItem().toString());
-            int cuenta_origen = cuenta;
-            
-            try {
-                Cuentas c2 = Main.tablaCuentas.queryForId(cuenta_origen);
-                Float saldo_actual_origen_fondos = c2.getSaldo();
-                Float saldo_nuevo_origen_fondos = saldo_actual_origen_fondos - Float.parseFloat(valor_a_transferir.getText());
+        if (valor_a_transferir.getText().length() == 0) {
+            msm_confirma_transaccion.setForeground(Color.red);
+            msm_confirma_transaccion.setVisible(true);
+            msm_confirma_transaccion.setText("ingrese un valor a transferir");
+        } else {
+            if (panel_transfer.isVisible()) {
+                int cuenta_search_updated = Integer.parseInt(combo_cuentas_a_trans.getSelectedItem().toString());
+                int cuenta_origen = cuenta;
 
-                if (saldo_actual_origen_fondos < Float.parseFloat(valor_a_transferir.getText()) || saldo_actual_origen_fondos == 0) {
-                    msm_confirma_transaccion.setForeground(Color.red);
-                    msm_confirma_transaccion.setVisible(true);
-                    msm_confirma_transaccion.setText("saldo insuficiente");
-                } else {
-                    try {
-                        Cuentas c = Main.tablaCuentas.queryForId(cuenta_search_updated);
-                        Float saldo_actual_destino = c.getSaldo();
+                try {
+                    Cuentas c2 = Main.tablaCuentas.queryForId(cuenta_origen);
+                    Float saldo_actual_origen_fondos = c2.getSaldo();
+                    Float saldo_nuevo_origen_fondos = saldo_actual_origen_fondos - Float.parseFloat(valor_a_transferir.getText());
 
-                        Float saldo_total_destino = saldo_actual_destino + Float.parseFloat(valor_a_transferir.getText());
-                        c.setSaldo(saldo_total_destino);
-
-                        Main.tablaCuentas.update(c);
-
-                        c2.setSaldo(saldo_nuevo_origen_fondos);
-                        Main.tablaCuentas.update(c2);
-//                      -------------------------------------------------------- 
-                        msm_confirma_transaccion.setForeground(Color.green);
+                    if (saldo_actual_origen_fondos < Float.parseFloat(valor_a_transferir.getText()) || saldo_actual_origen_fondos == 0) {
+                        msm_confirma_transaccion.setForeground(Color.red);
                         msm_confirma_transaccion.setVisible(true);
-                    } catch (SQLException ex) {
-                        Logger.getLogger(FormCajero2.class.getName()).log(Level.SEVERE, null, ex);
+                        msm_confirma_transaccion.setText("saldo insuficiente");
+                    } else {
+                        try {
+                            Cuentas c = Main.tablaCuentas.queryForId(cuenta_search_updated);
+                            Float saldo_actual_destino = c.getSaldo();
+
+                            Float saldo_total_destino = saldo_actual_destino + Float.parseFloat(valor_a_transferir.getText());
+                            c.setSaldo(saldo_total_destino);
+
+                            Main.tablaCuentas.update(c);
+
+                            c2.setSaldo(saldo_nuevo_origen_fondos);
+                            Main.tablaCuentas.update(c2);
+//                      -------------------------------------------------------- 
+                            msm_confirma_transaccion.setForeground(Color.green);
+                            msm_confirma_transaccion.setVisible(true);
+                            msm_confirma_transaccion.setText("transferencia realizada");
+                        } catch (SQLException ex) {
+                            Logger.getLogger(FormCajero2.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
-                }
 //              ----------------------------------------------------------------  
-            } catch (SQLException ex) {
-                Logger.getLogger(FormCajero2.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(FormCajero2.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
             }
 
         }
-        if(){
-            
+
+        if (panel_depositar.isVisible()) {
+            if (panel_deposi.getText().length() == 0) {
+                msm_confirma_transaccion.setForeground(Color.red);
+                msm_confirma_transaccion.setVisible(true);
+                msm_confirma_transaccion.setText("ingrese un valor a depositar");
+            } else {
+                try {
+                    Cuentas c = Main.tablaCuentas.queryForId(cuenta);
+                    Float saldo_actual = c.getSaldo();
+
+                    Float saldo_total = saldo_actual + Float.parseFloat(panel_deposi.getText());
+                    c.setSaldo(saldo_total);
+
+                    Main.tablaCuentas.update(c);
+//              -------------------------------------------------------- 
+                    msm_confirma_transaccion.setForeground(Color.green);
+                    msm_confirma_transaccion.setVisible(true);
+                    msm_confirma_transaccion.setText("deposito realizado");
+                } catch (SQLException ex) {
+                    Logger.getLogger(FormCajero2.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
         }
-        if(){
-            
+        if (panel_retirar1.isVisible()) {
+            if (panel_reti1.getText().length() == 0) {
+                msm_confirma_transaccion.setForeground(Color.red);
+                msm_confirma_transaccion.setVisible(true);
+                msm_confirma_transaccion.setText("ingrese saldo para retirar");
+            } else {
+                try {
+                    Cuentas c = Main.tablaCuentas.queryForId(cuenta);
+                    Float saldo_actual = c.getSaldo();
+                    if (saldo_actual < Float.parseFloat(panel_reti1.getText()) || saldo_actual == 0) {
+                        msm_confirma_transaccion.setForeground(Color.red);
+                        msm_confirma_transaccion.setVisible(true);
+                        msm_confirma_transaccion.setText("sin saldo suficiente");
+                    } else {
+                        try {
+                            Float saldo_total = saldo_actual - Float.parseFloat(panel_reti1.getText());
+                            c.setSaldo(saldo_total);
+
+                            Main.tablaCuentas.update(c);
+//                      -------------------------------------------------------- 
+                            msm_confirma_transaccion.setForeground(Color.green);
+                            msm_confirma_transaccion.setVisible(true);
+                            msm_confirma_transaccion.setText("retiro satisfactorio");
+                        } catch (SQLException ex) {
+                            Logger.getLogger(FormCajero2.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(FormCajero2.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
         }
 
     }//GEN-LAST:event_jButton12ActionPerformed
@@ -946,6 +1007,7 @@ public class FormCajero2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonTransferirScreenActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        msm_confirma_transaccion.setVisible(false);
         panel_transfer.setVisible(true);
         panel_transfer2.setVisible(true);
         panel_depositar1.setVisible(false);
@@ -969,6 +1031,7 @@ public class FormCajero2 extends javax.swing.JFrame {
     }//GEN-LAST:event_panel_deposiActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        msm_confirma_transaccion.setVisible(false);
         panel_depositar1.setVisible(true);
         panel_depositar.setVisible(true);
         panel_transfer.setVisible(false);
@@ -977,11 +1040,12 @@ public class FormCajero2 extends javax.swing.JFrame {
         panel_retirar1.setVisible(false);
     }//GEN-LAST:event_jButton14ActionPerformed
 
-    private void panel_deposi1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_panel_deposi1ActionPerformed
+    private void panel_reti1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_panel_reti1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_panel_deposi1ActionPerformed
+    }//GEN-LAST:event_panel_reti1ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        msm_confirma_transaccion.setVisible(false);
         panel_retirar.setVisible(true);
         panel_retirar1.setVisible(true);
         panel_transfer.setVisible(false);
@@ -1050,9 +1114,9 @@ public class FormCajero2 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel msm_confirma_transaccion;
     private javax.swing.JTextField panel_deposi;
-    private javax.swing.JTextField panel_deposi1;
     private javax.swing.JPanel panel_depositar;
     private javax.swing.JPanel panel_depositar1;
+    private javax.swing.JTextField panel_reti1;
     private javax.swing.JPanel panel_retirar;
     private javax.swing.JPanel panel_retirar1;
     private javax.swing.JPanel panel_transfer;
