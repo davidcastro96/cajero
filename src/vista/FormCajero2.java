@@ -51,14 +51,15 @@ public class FormCajero2 extends javax.swing.JFrame {
             List<Cuentas> c = Main.tablaCuentas.queryForAll();
             for (Cuentas l : c) {
                 combo_cuentas_a_trans.addItem(String.valueOf(l.getCuenta()));
+                combo_cuentas_a_trans.removeItem(String.valueOf(cuenta));
             }
-
             // Buscar en el combobox el usuario que no se puede hacer tranferencia a si mismo
             //
         } catch (SQLException ex) {
             Logger.getLogger(FormCajero2.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
+        
         msm_confirma_transaccion.setVisible(false);
     }
 
