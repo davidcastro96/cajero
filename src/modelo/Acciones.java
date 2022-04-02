@@ -11,23 +11,20 @@ import javax.swing.JOptionPane;
  * @author DAVIDCASTRO
  */
 public class Acciones {
+
     // Atributos
     private final String welcome = "Bienvenid@\ningrese";
     private String identificacion;
     private String passw;
-     
-    // Constructor
 
+    // Constructor
 //    public Acciones(String identificacion, String passw) {
 //        this.identificacion = identificacion;
 //        this.passw = passw;
 //    }
-    
     // Métodos
-    public void iniciarSesion(){
-        String identificacion = JOptionPane.showInputDialog ( "Introduzca un número:" );
-        String passw = JOptionPane.showInputDialog ("Introduzca contraseña:" );
+    public void iniciarSesion() {
+        String identificacion = JOptionPane.showInputDialog("Introduzca un número:");
+        String passw = JOptionPane.showInputDialog("Introduzca contraseña:");
     }
 }
-    
-

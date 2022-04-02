@@ -5,6 +5,7 @@ import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "cuentas")
 public class Cuentas {
+
     // Atributos
     @DatabaseField(id = true)
     private int cuenta;
@@ -38,16 +39,19 @@ public class Cuentas {
     }
 
     // Métodos
-    public void retirar(){
+    public void retirar() {
         System.out.println("retirar");
     }
-    public void depositar(){
+
+    public void depositar() {
         System.out.println("depositar");
     }
-    public void transferir(){
+
+    public void transferir() {
         System.out.println("transferir");
     }
-    public void sabers_saldo(){
+
+    public void sabers_saldo() {
         System.out.println("saber saldo");
     }
 }

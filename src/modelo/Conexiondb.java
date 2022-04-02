@@ -5,6 +5,7 @@ import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
 public class Conexiondb {
+
     public void crearTablaYconexiones() throws Exception {
         // Conexión a la base de datos
         ConnectionSource conexion;
@@ -17,9 +18,9 @@ public class Conexiondb {
         System.out.println("Conexión correcta");
 
         // Crear las 2 tablas
-        TableUtils.createTable(conexion,Usuarios.class);
+        TableUtils.createTable(conexion, Usuarios.class);
         System.out.println("Tabla Usuarios creada");
-        TableUtils.createTable(conexion,Cuentas.class);
+        TableUtils.createTable(conexion, Cuentas.class);
         System.out.println("Tabla Cuentas creada");
 
         // Cerrar la conexión

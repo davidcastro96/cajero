@@ -4,7 +4,6 @@
  */
 package modelo;
 
-
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
@@ -17,17 +16,17 @@ import vista.FormCajero;
  * @author DAVIDCASTRO
  */
 public class Main {
-    
+
     public static String user = ""; //Ya sabe el usuario
     public static int cedula;
     public static float saldo;
     public static int cuenta;
-    
-    public static Dao<Usuarios,Integer> tablaUsuarios;
-    public static Dao<Cuentas,Integer> tablaCuentas;
-    
+
+    public static Dao<Usuarios, Integer> tablaUsuarios;
+    public static Dao<Cuentas, Integer> tablaCuentas;
+
     public static void main(String[] args) throws SQLException {
-        
+
         ConnectionSource conexion;
 
         // Url de la base de dato
@@ -38,10 +37,10 @@ public class Main {
         System.out.println("Conexión correcta");
         tablaUsuarios = DaoManager.createDao(conexion, Usuarios.class);
         tablaCuentas = DaoManager.createDao(conexion, Cuentas.class);
-        
+
         FormCajero forma = new FormCajero();
         forma.setVisible(true);
-        
+
     }
-    
+
 }

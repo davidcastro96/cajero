@@ -27,15 +27,16 @@ public class FormCajero extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
     }
-    
+
     String fieldActivo = "login_usuario";
 
     private void jTextField1_Focus() {
-    fieldActivo = "login_usuario";
+        fieldActivo = "login_usuario";
     }
+
     private void jTextField2_Focus() {
-    fieldActivo = "login_contrasena";
-    } 
+        fieldActivo = "login_contrasena";
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -460,11 +461,14 @@ public class FormCajero extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    JTextField field = null;
-    switch (fieldActivo)
-        {
-            case "login_usuario": field = login_usuario; break;
-            case "login_contrasena": field = login_contrasena; break;
+        JTextField field = null;
+        switch (fieldActivo) {
+            case "login_usuario":
+                field = login_usuario;
+                break;
+            case "login_contrasena":
+                field = login_contrasena;
+                break;
         }
         String t = field.getText();
         field.setText(t + "2");
