@@ -5,23 +5,18 @@
 package vista;
 
 import java.awt.Color;
-import java.awt.Event;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
-import javax.swing.JComboBox;
-import javax.swing.border.EmptyBorder;
-import modelo.Conexiondb;
 import modelo.Cuentas;
 import modelo.Main;
 import static modelo.Main.cedula;
 import static modelo.Main.cuenta;
 import static modelo.Main.saldo;
 import static modelo.Main.user;
-import modelo.Usuarios;
 
 /**
  *
